@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:dw_image_picker/dw_image_picker.dart';
 import 'package:dw_image_picker_example/widgets/aspect_ratio_select.dart';
 import 'package:dw_image_picker_example/widgets/custom_switch.dart';
 import 'package:dw_image_picker_example/widgets/increase_decrease.dart';
 import 'package:dw_image_picker_example/widgets/media_preview.dart';
 import 'package:dw_image_picker_example/widgets/media_type_select.dart';
+import 'package:flutter/material.dart';
 
 void main() {
   runApp(const MyApp());
@@ -66,13 +66,6 @@ class _MyHomePageState extends State<MyHomePage> {
           usedCameraButton: _usedCameraButton,
           numberOfColumn: _numberOfColumn,
           isGif: true,
-        ),
-        cropOptions: DWCropOptions(
-          aspectRatio: _aspectRatio,
-          aspectRatioPresets: _aspectRatioPresets,
-          compressQuality: _compressQuality,
-          compressFormat: CompressFormat.jpg,
-          croppingStyle: _croppingStyle,
         ),
       );
       setState(() {
@@ -154,12 +147,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: ElevatedButton(
                   onPressed: _openCamera,
                   child: const Text('Open camera'),
-                ),
-              ),
-              Align(
-                child: ElevatedButton(
-                  onPressed: _selectedImages.isNotEmpty ? _openCropper : null,
-                  child: const Text('Open cropper'),
                 ),
               ),
 
