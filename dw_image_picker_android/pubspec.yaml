@@ -13,7 +13,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  dw_image_picker_platform_interface: ^1.2.4
+  dw_image_picker_platform_interface:
+    path: ../dw_image_picker_platform_interface
 
 dev_dependencies:
   flutter_test:

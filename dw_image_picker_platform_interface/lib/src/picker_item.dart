@@ -23,16 +23,31 @@ class DWPickerItem {
   final double? duration;
   final String? thumbnail;
 
+  static String _decodePath(dynamic pathValue) {
+    if (pathValue == null || pathValue is! String) {
+      return pathValue?.toString() ?? '';
+    }
+    final path = pathValue;
+    try {
+      return Uri.decodeFull(path);
+    } catch (_) {
+      // Android/content URIs can have invalid percent-encoding (e.g. with some locales)
+      return path;
+    }
+  }
+
   factory DWPickerItem.fromMap(Map<dynamic, dynamic> json) => DWPickerItem(
-        path: Uri.decodeFull(json['path']),
-        id: json['id'],
+        path: DWPickerItem._decodePath(json['path']),
+        id: DWPickerItem._decodePath(json['id']),
         name: json['name'],
         mimeType: json['mimeType'],
         size: json['size'],
         width: json['width'],
         height: json['height'],
         duration: json['duration'],
-        thumbnail: json['thumbnail'],
+        thumbnail: json['thumbnail'] != null
+            ? DWPickerItem._decodePath(json['thumbnail'])
+            : null,
         type: json['type'],
       );
 
